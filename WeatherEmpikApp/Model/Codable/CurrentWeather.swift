@@ -83,6 +83,7 @@ enum Main: String, Codable {
     case haze = "Haze"
     case mist = "Mist"
     case fog = "Fog"
+    case smoke = "Smoke"
 }
 
 // MARK: - Daily

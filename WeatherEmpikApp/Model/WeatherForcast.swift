@@ -9,8 +9,6 @@ import UIKit
 
 struct WeatherForcast: Hashable {
     let temperature: Double
-    let sunset: Date
-    let sunrise: Date
     let humidity: String
     let windSpeed: String
     let conditionId: Int
@@ -20,8 +18,6 @@ struct WeatherForcast: Hashable {
     
     init(object: Daily) {
         self.temperature = (object.temp?.day ?? 0)
-        self.sunset = (object.sunset)?.getDateFromStamp() ?? Date()
-        self.sunrise = (object.sunrise)?.getDateFromStamp() ?? Date()
         self.humidity = String(object.humidity ?? 0) + " %"
         self.windSpeed = String(object.windSpeed ?? 0) + " m/s"
         self.conditionId = object.weather?.first?.id ?? 0

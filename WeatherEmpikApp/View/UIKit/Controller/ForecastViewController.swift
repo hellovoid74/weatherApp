@@ -30,9 +30,8 @@ final class ForecastViewController: BaseViewController {
     lazy var mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .equalCentering
         stackView.alignment = .center
-        stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -40,9 +39,11 @@ final class ForecastViewController: BaseViewController {
     lazy var cityLabel: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
-        label.font = .systemFont(ofSize: 40, weight: .bold)
+        label.font = .systemFont(ofSize: 35, weight: .bold)
         label.backgroundColor = .clear
         label.textColor = .black
+        label.minimumScaleFactor = 0.2
+        label.numberOfLines = 1
         return label
     }()
     
@@ -241,14 +242,15 @@ final class ForecastViewController: BaseViewController {
     private func configureUI() {
         view.addSubview(mainStackView)
         animationView = .init(name: displayModel?.animationName ?? "")
+        let height = UIScreen.main.bounds.height
         
         if let animationView = animationView {
             mainStackView.addArrangedSubview(animationView)
             NSLayoutConstraint.activate([
-                animationView.widthAnchor.constraint(equalToConstant: 200),
-                animationView.heightAnchor.constraint(equalToConstant: 200)
+                animationView.widthAnchor.constraint(equalTo: view.widthAnchor),
+                animationView.heightAnchor.constraint(equalToConstant: height / 5)
             ])
-            
+
             animationView.play()
         }
 
@@ -276,8 +278,8 @@ final class ForecastViewController: BaseViewController {
         ])
         
         NSLayoutConstraint.activate([
-            mainStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-             mainStackView.topAnchor.constraint(equalTo: self.view.topAnchor)
+            mainStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         
         NSLayoutConstraint.activate([

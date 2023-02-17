@@ -34,8 +34,8 @@ struct WeatherModel: Hashable {
         self.time = Date().getProperDate(timezone: object.timezone)
         self.windSpeed = String(object.current?.windSpeed ?? 0) + " m/s"
         self.precipitation = String(format: "%.0f", (((object.hourly?.first?.pop ?? 0) * 100))) + " %"
-        self.sunset = (object.current?.sunset ?? 0).getDateFromStamp()
-        self.sunrise = (object.current?.sunrise ?? 0).getDateFromStamp()
+        self.sunset = (object.current?.sunset ?? 0).getDateFromStamp(timezone: TimeZone(identifier: object.timezone ?? ""))
+        self.sunrise = (object.current?.sunrise ?? 0).getDateFromStamp(timezone: TimeZone(identifier: object.timezone ?? ""))
         self.dayTime = Date().getDayTime(timezone: object.timezone ?? "", sunrise: sunrise, sunset: sunset)
         self.humidity = String(object.current?.humidity ?? 0) + " %"
         self.pressure = String(object.current?.pressure ?? 0) + " hPa"

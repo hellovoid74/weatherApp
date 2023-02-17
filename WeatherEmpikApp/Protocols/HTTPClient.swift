@@ -32,7 +32,7 @@ extension HTTPClient {
             completion(.failure(.invalidURL))
             return
         }
-    
+
         var request = URLRequest(url: url)
         request.httpMethod = endpoint.method.rawValue
         request.allHTTPHeaderFields = endpoint.header
