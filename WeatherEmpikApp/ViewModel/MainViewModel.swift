@@ -159,8 +159,7 @@ final class MainViewModel: ObservableObject {
     func requestLocation() {
         locationManager.requestAuthInUse()
             .flatMap { self.locationManager.requestLocation() }
-            .sink { comprtion in
-                print(comprtion)
+            .sink { _ in
             } receiveValue: { [unowned self] location in
                 service.reverseSearch(coordinates: location.coordinate) { result in
                     if case .success(let array) = result {
