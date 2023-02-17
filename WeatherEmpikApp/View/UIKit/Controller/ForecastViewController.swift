@@ -30,7 +30,7 @@ final class ForecastViewController: BaseViewController {
     lazy var mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .equalCentering
+        stackView.distribution = .equalSpacing
         stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
